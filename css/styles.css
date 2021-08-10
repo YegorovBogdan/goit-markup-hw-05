@@ -133,23 +133,51 @@ img {
 
   color: var(--primary-text-color);
   text-decoration: none;
+
+  transition-property: color;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .site-nav a.current {
+  position: relative;
   color: var(--accent-color);
 }
 
-.aside a {
-  display: inline-block;
-  color: var(--secondary-text-color);
-  text-decoration: none;
-}
-
-.aside a:hover,
-.aside a:focus,
 .site-nav a:hover,
 .site-nav a:focus {
   color: var(--accent-color);
+}
+
+.site-nav a.current::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  height: 4px;
+  width: 100%;
+
+  background-color: var(--accent-color);
+  border-radius: 2px;
+}
+
+.aside a {
+  display: flex;
+  align-items: center;
+
+  color: var(--secondary-text-color);
+  text-decoration: none;
+
+  transition-property: color;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.aside a:hover,
+.aside a:focus {
+  color: var(--accent-color);
+  outline: none;
 }
 
 .icon-mail {
@@ -182,9 +210,10 @@ img {
   max-width: 1600px;
   margin-right: auto;
   margin-left: auto;
-  background: var(--footer-bg-color);
   padding-top: 200px;
   padding-bottom: 200px;
+
+  background-color: var(--footer-bg-color);
   background-image: linear-gradient(
       rgba(47, 48, 58, 0.4),
       rgba(47, 48, 58, 0.4)
@@ -213,20 +242,28 @@ img {
 
 .button {
   display: inline-block;
+  padding: 10px 32px;
   border: 0;
   border-radius: 4px;
-  padding: 10px 32px;
+
   font-weight: 700;
   font-size: 16px;
   line-height: 1.88;
+  letter-spacing: 0.06em;
+
   background-color: var(--accent-color);
   color: #fff;
+
+  transition-property: background-color;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .button:hover,
 .button:focus {
   background-color: var(--accent-hero-button);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+  outline: none;
 }
 
 .section {
@@ -292,6 +329,7 @@ img {
 
 .work .subject-list {
   display: flex;
+  position: relative;
 }
 
 .work .subject-item:not(:last-child) {
@@ -312,6 +350,27 @@ img {
   font-size: 36px;
   line-height: 1.17;
   text-align: center;
+}
+
+.work p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+
+  bottom: 0;
+  margin: 0;
+  width: 370px;
+  height: 70px;
+
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.14;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+
+  color: #fff;
+  background-color: rgba(47, 48, 58, 0.8);
 }
 
 /* Наша команда */
@@ -383,12 +442,17 @@ img {
   fill: rgba(175, 177, 184, 1);
   background-color: var(--primary-bg-color);
   border-radius: 50%;
+
+  transition-property: background-color, fill;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .social-link .link:hover,
 .social-link .link:focus {
   background-color: var(--accent-color);
   fill: #fff;
+  outline: none;
 }
 
 /*Постоянные клиенты*/
@@ -418,12 +482,20 @@ img {
   cursor: pointer;
   border-radius: 4px;
   border: 1px solid rgba(175, 177, 184, 1);
+
+  transition-property: border-color, fill;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .our-regular-clients-item .link:hover,
 .our-regular-clients-item .link:focus {
   fill: var(--accent-color);
   border-color: var(--accent-color);
+}
+
+.our-regular-clients-item .link:focus {
+  outline: none;
 }
 
 .list {
@@ -455,6 +527,10 @@ img {
   line-height: 1.63;
   text-align: center;
   margin-bottom: 50px;
+
+  transition-property: background-color, color, box-shadow;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .portfolio-nav-list button:hover,
@@ -543,6 +619,69 @@ img {
   text-decoration: none;
 }
 
+/* Всплывающее описание карточки */
+
+.overlay {
+  position: relative;
+  width: 370px;
+  overflow: hidden;
+}
+
+.overlay::before {
+  position: absolute;
+  content: "";
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(33, 150, 243, 0.9);
+
+  transform: translateY(100%);
+  transition-property: transform, background-color;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.overlay:hover::before,
+.overlay:focus::before {
+  transform: translateY(0);
+}
+
+.container-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: inline-flex;
+  margin: 0;
+  padding: 63px 24px;
+
+  color: #fff;
+
+  font-size: 18px;
+  line-height: 1.55;
+  letter-spacing: 0.03em;
+
+  transform: translateY(100%);
+
+  transition-property: transform, color;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.overlay:hover .container-text,
+.overlay:focus .container-text {
+  transform: translateY(0);
+}
+
+.card:hover .overlay::before {
+  transform: translateY(0);
+}
+
+.card:hover .container-text {
+  transform: translateY(0);
+}
+
 /*Футтер*/
 
 .footer {
@@ -577,7 +716,7 @@ img {
 }
 
 .footer-address p {
-  margin-top: 20px;
+  margin-top: 0;
   margin-bottom: 9px;
   color: #fff;
   font-size: 14px;
@@ -585,6 +724,9 @@ img {
 }
 
 .footer-list {
+  display: flex;
+  flex-direction: column;
+
   font-size: 14px;
   line-height: 1.71;
 }
@@ -597,11 +739,16 @@ img {
   display: block;
   color: var(--footer-link);
   text-decoration: none;
+
+  transition-property: color;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer-list a:hover,
 .footer-list a:focus {
   color: var(--accent-color);
+  outline: none;
 }
 
 /*Соцсети в футере*/
@@ -625,7 +772,7 @@ img {
 
 .social.list {
   display: flex;
-  align-items: baseline;
+
   padding: 0;
   margin: 0;
 }
@@ -640,13 +787,87 @@ img {
   fill: #fff;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
+
+  transition-property: background-color, fill;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .social .link:hover,
 .social .link:focus {
   background-color: var(--accent-color);
+  outline: none;
 }
 
 .social li:not(:last-child) {
   margin-right: 10px;
+}
+
+/* Модальное окно */
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+
+  opacity: 1;
+  transition-property: opacity;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0.7);
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+
+  min-width: 528px;
+  min-height: 581px;
+
+  background-color: var(--primary-bg-color);
+
+  transition-property: transform;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.close-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+
+  height: 30px;
+  width: 30px;
+
+  display: flex;
+  align-items: center;
+
+  background-color: var(--bg-color);
+
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+
+  cursor: pointer;
+}
+
+.icon-close {
+  fill: var(--logo-color);
+}
+
+.icon-close:hover,
+.icon-close:focus {
+  fill: var(--accent-color);
 }

@@ -58,7 +58,7 @@
         <section class="banner">
             <div class="hero conteiner">
                 <h1 class="title">Эффективные решения для вашего бизнеса</h1>
-                <button class="button" type="button">Заказать услугу</button>
+                <button class="button" data-modal-open>Заказать услугу</button>
             </div>
         </section>
 
@@ -129,14 +129,17 @@
                 <ul class="subject-list items">
                     <li class="subject-item">
                         <img src="./images/box1.jpg" alt="создание HTML документа" width="370" />
+                        <p>Десктопные приложения</p>
                     </li>
 
                     <li class="subject-item">
                         <img src="./images/box2.jpg" alt="оформление CSS стилей" width="370" />
+                        <p>Мобильные приложения</p>
                     </li>
 
                     <li class="subject-item">
                         <img src="./images/box3.jpg" alt="оформление CSS цвета" width="370" />
+                        <p>Дизайнерские решения</p>
                     </li>
                 </ul>
             </div>
@@ -420,6 +423,20 @@
             </div>
         </div>
     </footer>
+
+    <!-- Модальное окно -->
+
+    <div class="backdrop is-hidden" data-modal>
+        <div class="modal">
+            <button class="close-button" type="button" data-modal-close>
+                <svg class="icon-close" width="18" height="18">
+                    <use href="./images/icons.svg#icon-close"></use>
+                </svg>
+            </button>
+        </div>
+    </div>
+    
+    <script src="./js/modal.js"></script>
 </body>
 
 </html>
