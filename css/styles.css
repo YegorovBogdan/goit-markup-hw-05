@@ -507,9 +507,10 @@ img {
 
 /*Портфолио*/
 
-.portfolio-nav-list {
+.portfolio-nav-list.items {
   display: flex;
   justify-content: center;
+  margin-bottom: 50px;
 }
 
 .portfolio-nav-list li:not(:last-child) {
@@ -526,7 +527,6 @@ img {
   font-size: 16px;
   line-height: 1.63;
   text-align: center;
-  margin-bottom: 50px;
 
   transition-property: background-color, color, box-shadow;
   transition-duration: 250ms;
@@ -562,7 +562,7 @@ img {
   width: 370px;
   box-sizing: border-box;
   margin-left: 30px;
-  margin-top: 30px;
+  margin-bottom: 30px;
   flex-basis: calc((100% - 3 * 30px) / 3);
   overflow: hidden;
 }
